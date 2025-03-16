@@ -2,7 +2,6 @@ package org.krkmz.postapp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table( name = "comments" )
-@Data
+
 public class Comment {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -35,4 +34,51 @@ public class Comment {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public Long getId () {
+        return id;
+    }
+
+    public void setId (Long id) {
+        this.id = id;
+    }
+
+    public Post getPost () {
+        return post;
+    }
+
+    public void setPost (Post post) {
+        this.post = post;
+    }
+
+    public User getUser () {
+        return user;
+    }
+
+    public void setUser (User user) {
+        this.user = user;
+    }
+
+    public String getText () {
+        return text;
+    }
+
+    public void setText (String text) {
+        this.text = text;
+    }
+
+    public LocalDateTime getCreatedAt () {
+        return createdAt;
+    }
+
+    public void setCreatedAt (LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt () {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt (LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
