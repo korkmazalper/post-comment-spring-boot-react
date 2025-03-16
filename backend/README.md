@@ -4,7 +4,7 @@ The Original Project is coded by Dilruba Köse
 
 # User Posts and Comments project - Spring Boot - React
 
-# Entity Relation Diagrammb(Template -> Robust possible)
+# Entity Relation Diagramm(Template at the beginning)
 
 ````mermaid
 erDiagram
