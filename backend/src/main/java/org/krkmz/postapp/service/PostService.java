@@ -32,7 +32,7 @@ public class PostService {
     }
 
     public Post createPost (PostCreateRequest newPostRequest) {
-        User user = userService.getById(newPostRequest.getUserId());
+        User user = userService.getUserById(newPostRequest.getUserId());
         if ( user == null ) {
             throw new IllegalArgumentException("User not found with ID: " + newPostRequest.getUserId());
         }

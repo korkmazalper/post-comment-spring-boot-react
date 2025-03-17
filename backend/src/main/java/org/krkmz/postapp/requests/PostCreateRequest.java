@@ -40,4 +40,14 @@ public class PostCreateRequest {
     public void setUserId (Long userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString () {
+        return "PostCreateRequest{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", userId=" + userId +
+                '}';
+    }
 }
