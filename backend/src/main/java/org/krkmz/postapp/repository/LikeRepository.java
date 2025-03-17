@@ -1,7 +1,9 @@
 package org.krkmz.postapp.repository;
 
 import org.krkmz.postapp.entity.Like;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface LikeRepository extends JpaRepository<Like, Long> {
+@Repository
+public interface LikeRepository extends BaseRepository<Like, Long> {
+
 }

@@ -24,15 +24,7 @@ public class CommentService {
     }
 
     public List<Comment> getAllCommentsWithParams (Optional<Long> userId, Optional<Long> postId) {
-        if ( userId.isPresent() && postId.isPresent() ) {
-            return commentRepository.findByUserIdAndPostId(userId.get(), postId.get());
-        } else if ( userId.isPresent() ) {
-            return commentRepository.findByUserId(userId.get());
-        } else if ( postId.isPresent() ) {
-            return commentRepository.findByPostId(postId.get());
-        } else {
-            return commentRepository.findAll();
-        }
+        return ServiceHelper.createCommentOrLike(commentRepository, userId, postId);
     }
 
     public Comment getCommentById (Long commentId) {
