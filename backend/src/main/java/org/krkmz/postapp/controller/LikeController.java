@@ -28,7 +28,12 @@ public class LikeController {
     }
 
     @PostMapping
-    public Like createComment (@RequestBody LikeCreateRequest request) {
+    public Like createLike (@RequestBody LikeCreateRequest request) {
         return likeService.createComment(request);
+    }
+
+    @DeleteMapping( "/{likeId}" )
+    public void deleteLike (@PathVariable Long likeId) {
+        likeService.delete(likeId);
     }
 }

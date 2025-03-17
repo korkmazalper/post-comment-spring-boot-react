@@ -46,4 +46,7 @@ public class LikeService {
     }
 
 
+    public void delete (Long likeId) {
+        likeRepository.deleteById(likeId);
+    }
 }

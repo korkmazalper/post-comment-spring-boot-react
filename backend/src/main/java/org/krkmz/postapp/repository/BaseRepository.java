@@ -7,9 +7,9 @@ import java.util.List;
 
 @NoRepositoryBean
 public interface BaseRepository<T, Long> extends JpaRepository<T, Long> {
-    List<T> findByUserIdAndPostId (java.lang.Long userId, java.lang.Long postId);
+    List<T> findByUserIdAndPostId (Long userId, Long postId);
 
-    List<T> findByUserId (java.lang.Long userId);
+    List<T> findByUserId (Long userId);
 
-    List<T> findByPostId (java.lang.Long postId);
+    List<T> findByPostId (Long postId);
 }
