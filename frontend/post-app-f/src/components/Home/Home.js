@@ -30,12 +30,16 @@ function Home() {
         </div>
     }
   return (
-     <div className='container'>
+     <div className='container' >
         
           {postList.map(post => (
               <Post title={post.title} text={post.text}
                   creationDate={post.createdAt}
-                  postid={post.id}></Post>
+                  username={post.userName}
+                    userId={post.userId}
+              >
+                  
+                  </Post>
                    
              
           ))}

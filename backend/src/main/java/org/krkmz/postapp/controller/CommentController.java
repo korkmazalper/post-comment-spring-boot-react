@@ -1,5 +1,6 @@
 package org.krkmz.postapp.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.krkmz.postapp.entity.Comment;
 import org.krkmz.postapp.requests.CommentCreateRequest;
 import org.krkmz.postapp.requests.CommentUpdateRequest;
@@ -18,6 +19,10 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @Operation(
+            summary = "Get Comments API",
+            description = "Get Comments API to get objects from database"
+    )
     @GetMapping
     public List<Comment> getAllComments (@RequestParam Optional<Long> userId, @RequestParam Optional<Long> postId) {
         return commentService.getAllCommentsWithParams(userId, postId);

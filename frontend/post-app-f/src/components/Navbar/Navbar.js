@@ -15,7 +15,7 @@ function Navbar() {
     
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ bgcolor: "#ee0011", color:"#00FFFF" , marginRight:2}} >
+      <AppBar position="static" sx={{ bgcolor: "#0000FF", color:"#FFFFFF" , marginRight:2}} >
         <Toolbar>
           <IconButton
             size="large"
@@ -28,8 +28,8 @@ function Navbar() {
           </IconButton>
                   <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                       <Box display="flex" justifyContent="space-between" alignItems="center">
-                          <Link to="/" style={{ textDecoration: "none" ,color:"#00FFFF" }}>Home</Link>
-                          <Link to={`/users/${userId}`} style={{ textDecoration: "none", color:"#00FFFF" }}>User </Link>               
+                          <Link to="/" style={{ textDecoration: "none" ,color:"#FFFFFF" }}>Home</Link>
+                          <Link to={`/users/${userId}`} style={{ textDecoration: "none", color:"#FFFFFF" }}>User </Link>               
                       </Box>
            
         </Typography>

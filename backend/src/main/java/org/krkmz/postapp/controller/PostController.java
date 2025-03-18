@@ -3,6 +3,7 @@ package org.krkmz.postapp.controller;
 import org.krkmz.postapp.entity.Post;
 import org.krkmz.postapp.requests.PostCreateRequest;
 import org.krkmz.postapp.requests.PostUpdateRequest;
+import org.krkmz.postapp.responses.PostResponse;
 import org.krkmz.postapp.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,14 +20,11 @@ public class PostController {
     }
 
     @GetMapping
-    public List<Post> getAllPosts (@RequestParam Optional<Long> userId) {
+    public List<PostResponse> getAllPosts (@RequestParam Optional<Long> userId) {
         return postService.getAllPosts(userId);
+
     }
 
-    @GetMapping( "/{postId}" )
-    public Post getPost (@PathVariable Long postId) {
-        return postService.getPostById(postId);
-    }
 
     @PostMapping
     public Post createPost (@RequestBody PostCreateRequest newPostRequest) {

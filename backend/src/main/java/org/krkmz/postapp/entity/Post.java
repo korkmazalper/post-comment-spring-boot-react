@@ -1,6 +1,5 @@
 package org.krkmz.postapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.OnDelete;
@@ -16,10 +15,9 @@ public class Post {
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
 
-    @ManyToOne( fetch = FetchType.LAZY )
+    @ManyToOne( fetch = FetchType.EAGER )
     @JoinColumn( name = "user_id", nullable = false )
     @OnDelete( action = OnDeleteAction.CASCADE )
-    @JsonIgnore
     private User user;
     @Column( name = "title" )
     private String title;

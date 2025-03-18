@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -14,7 +15,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
   return <IconButton {...other} />;
@@ -27,7 +28,8 @@ const ExpandMore = styled((props) => {
 }));
 
 function Post(props) {
-  const { title, text,postid , creationDate} = props;
+  const { title, text, username, userId, creationDate } = props;
+  
  const formattedDate = new Date(creationDate).toLocaleString("tr", {
   weekday: "long", 
   year: "numeric",
@@ -38,62 +40,69 @@ function Post(props) {
   second: "2-digit",
 });
   const [expanded, setExpanded] = useState(false);
-
+const  [ liked, setLiked] = useState(false)
+  
  
   const handleExpandClick = () => {
     setExpanded((prev) => !prev);
   };
-
+  const handleLike = () => {
+    setLiked((prev) => !prev);
+    console.log("Like durumu:", liked)
+  };
   return (
     <div sx={{maxWidth: 800, margin: "auto", padding: 3}}>
 <Card sx={{ width: "100%", maxWidth: 800, marginBottom: 3, padding: 3, width:600, bgcolor:pink[50]}}>
       <CardHeader
-        avatar={
-          <Avatar sx={{ bgcolor: pink[200] }} aria-label="recipe">
-            {postid}
+          avatar={
+            <Link to={{pathname:'/users/'+userId}} style={{ textDecoration: 'none' }}>
+          <Avatar sx={{ bgcolor: pink[200], color:'whitesmoke' }} aria-label="recipe">
+            {username ? username.charAt(0).toUpperCase():"?"}
           </Avatar>
+            </Link>
+          
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-          title={<Typography sx={{ color: "red" }}>
+          title={<Typography sx={{ color: "red", textAlign:"left" }}>
                     {title}
                   </Typography>}
           
           subheader={
-                  <Typography sx={{ color: "blue" }}>
+                  <Typography sx={{ color: "blue" , textAlign:"left", fontSize:"0.75rem" }}>
                     {formattedDate}
                   </Typography>
                   }
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
-      />
+      
       <CardContent>
-        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+        <Typography variant="body2" sx={{ color: 'text.secondary', textAlign:"left" }}>
           {text}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <ExpandMore
+      <CardActions style={{display:"flex", justifyContent:"space-between" }}>
+          <IconButton aria-label="add to favorites"
+            onClick={handleLike}
+          >
+          <FavoriteIcon sx={liked ? {color:red[500]}:null} />
+          </IconButton >
+          
+        <IconButton aria-label="comment this post" onClick={handleExpandClick} >
+                  <ChatBubbleIcon/>
+          </IconButton >
+          
+        
+      {/*   <ExpandMore
           expand={expanded} 
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
           <ExpandMoreIcon />
-        </ExpandMore>
+        </ExpandMore> */}
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>

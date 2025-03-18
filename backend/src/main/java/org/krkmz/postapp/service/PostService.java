@@ -5,10 +5,12 @@ import org.krkmz.postapp.entity.User;
 import org.krkmz.postapp.repository.PostRepository;
 import org.krkmz.postapp.requests.PostCreateRequest;
 import org.krkmz.postapp.requests.PostUpdateRequest;
+import org.krkmz.postapp.responses.PostResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -20,11 +22,13 @@ public class PostService {
         this.userService = userService;
     }
 
-    public List<Post> getAllPosts (Optional<Long> userId) {
+    public List<PostResponse> getAllPosts (Optional<Long> userId) {
+        List<Post> list;
         if ( userId.isPresent() ) {
-            return postRepository.findByUserId(userId.get());
+            list = postRepository.findByUserId(userId.get());
         }
-        return postRepository.findAll();
+        list = postRepository.findAll();
+        return list.stream().map((post) -> new PostResponse(post)).collect(Collectors.toList());
     }
 
     public Post getPostById (Long postId) {
