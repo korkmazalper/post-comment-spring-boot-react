@@ -1,19 +1,19 @@
 import Post from '../Post/Post'
 import React,{useState,useEffect} from 'react'
 import './Home.scss'
-function Home() {
-     
+import PostForm from '../Post/PostForm';
+function Home() { 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [postList, setPostList] = useState([]);
-
-    useEffect(() => {
+    const refreshPosts = () => {
         fetch("/posts")
             .then(res => res.json())
             .then(
                 (result) => {
                     setIsLoaded(true);
-                    setPostList(result);
+                    const resultReversed = result.reverse();
+                    setPostList(resultReversed);
 
                 },
                 (error) => {
@@ -21,7 +21,10 @@ function Home() {
                     setError(error);
                 }
             )
-    }, []);
+    }
+    useEffect(() => {
+        refreshPosts()
+    }, [postList]);
     if (error) {
         return <div> Error ! </div>
     } else if (!isLoaded) {
@@ -31,12 +34,13 @@ function Home() {
     }
   return (
      <div className='container' >
-        
+          <PostForm userId={3} username={'Yasmin'}  refreshPosts={refreshPosts} />
           {postList.map(post => (
-              <Post title={post.title} text={post.text}
+              <Post postId={ post.id} title={post.title} text={post.text}
                   creationDate={post.createdAt}
                   username={post.userName}
-                    userId={post.userId}
+                  userId={post.userId}
+                 
               >
                   
                   </Post>
